@@ -12,7 +12,9 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
-
+<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
 
 </head>
 <body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
@@ -477,7 +479,7 @@ Video Based Learning, Collaborative Learning, Game Based Learning are some of th
 				</div>
 
 				<div class="col-md-7 mb-5 mb-md-0">
-					<form action="https://script.google.com/macros/s/AKfycby4oVRpAQ57F-NORcSuTtav8IR0p0yp9gytHIT2hUSwb4lAb0IBOANE6LInKvCTDgbt/exec" class="site-form">
+					<form name="submit-to-google-sheet" class="site-form">
 						<h3 class="mb-5">Get In Touch</h3>
 						<div class="form-group">
 							<input type="text" class="form-control px-3 py-4" placeholder="Your Name">
@@ -485,9 +487,7 @@ Video Based Learning, Collaborative Learning, Game Based Learning are some of th
 						<div class="form-group">
 							<input type="email" class="form-control px-3 py-4" placeholder="Your Email">
 						</div>
-						<div class="form-group">
-							<input type="email" class="form-control px-3 py-4" placeholder="Your Phone">
-						</div>
+						
 						<div class="form-group mb-5">
 							<textarea class="form-control px-3 py-4"cols="30" rows="10" placeholder="Write a Message"></textarea>
 						</div>
@@ -495,6 +495,17 @@ Video Based Learning, Collaborative Learning, Game Based Learning are some of th
 							<input type="submit" class="btn btn-primary  px-4 py-3" value="Send Message">
 						</div>
 					</form>
+					<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycby4oVRpAQ57F-NORcSuTtav8IR0p0yp9gytHIT2hUSwb4lAb0IBOANE6LInKvCTDgbt/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
 				</div>
 				<div class="col-md-5 pl-md-5">
 					<h3 class="mb-5">My Contact Details</h3>
