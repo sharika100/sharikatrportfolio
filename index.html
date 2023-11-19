@@ -15,7 +15,24 @@
 <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
 <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
 <script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+<script>
+	window.addEventListener("load", function() {
+  const form = document.getElementById('my-form');
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const action = e.target.action;
+    fetch(action, {
+      method: 'POST',
+      body: data,
+    })
+    .then(() => {
+      alert("Success!");
+    })
+  });
+});
 
+</script>
 </head>
 <body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
 
@@ -479,7 +496,7 @@ Video Based Learning, Collaborative Learning, Game Based Learning are some of th
 				</div>
 
 				<div class="col-md-7 mb-5 mb-md-0">
-					<form method="POST" action="https://script.google.com/macros/s/AKfycby4oVRpAQ57F-NORcSuTtav8IR0p0yp9gytHIT2hUSwb4lAb0IBOANE6LInKvCTDgbt/exec" class="site-form">
+					<form method="POST" action="https://script.google.com/macros/s/AKfycby4oVRpAQ57F-NORcSuTtav8IR0p0yp9gytHIT2hUSwb4lAb0IBOANE6LInKvCTDgbt/exec" class="site-form" name="my-form">
 						<h3 class="mb-5">Get In Touch</h3>
 						<div class="form-group">
 							<input type="text" class="form-control px-3 py-4" placeholder="Your Name" name="name">
